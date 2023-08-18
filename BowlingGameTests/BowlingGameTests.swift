@@ -87,6 +87,11 @@ final class BowlingGameTests: XCTestCase {
         XCTAssertEqual(game.score(), 24)
     }
     
+    func testPerfectGame() {
+        rollMany(pins: 10, times: 12)
+        XCTAssertEqual(game.score(), 300)
+    }
+    
     // MARK: - Helpers
     private func rollStrike() {
         game.roll(10)
