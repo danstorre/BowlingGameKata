@@ -53,8 +53,7 @@ final class BowlingGameTests: XCTestCase {
     }
     
     func testOneSpare() {
-        game.roll(5)
-        game.roll(5) // spare
+        rollSpare()
         game.roll(3)
         rollMany(pins: 0, times: 17)
         XCTAssertEqual(game.score(), 16)
@@ -65,5 +64,10 @@ final class BowlingGameTests: XCTestCase {
         for _ in 1...times {
             game.roll(pins)
         }
+    }
+    
+    private func rollSpare() {
+        game.roll(5)
+        game.roll(5)
     }
 }
