@@ -14,15 +14,13 @@ final class Game {
         var roll = 0
         for _ in 1...10 {
             if rolls[roll] == 10 {
-                score += 10 +
-                            rolls[roll + 1] +
-                            rolls[roll + 2]
+                score += 10 + strikeBonus(roll)
                 roll += 1
             } else if isSpare(roll) {
-                score += 10 + rolls[roll + 2]
+                score += 10 + spareBonus(roll)
                 roll += 2
             } else {
-                score += rolls[roll] + rolls[roll + 1]
+                score += sumOfBallsInFrame(roll)
                 roll += 2
             }
         }
@@ -31,6 +29,18 @@ final class Game {
     
     private func isSpare(_ roll: Int) -> Bool {
         rolls[roll] + rolls[roll + 1] == 10
+    }
+    
+    private func strikeBonus(_ roll: Int) -> Int {
+        return rolls[roll + 1] + rolls[roll + 2]
+    }
+    
+    private func spareBonus(_ roll: Int) -> Int {
+        return rolls[roll + 2]
+    }
+    
+    private func sumOfBallsInFrame(_ roll: Int) -> Int {
+        return rolls[roll] + rolls[roll + 1]
     }
 }
 
