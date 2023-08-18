@@ -12,8 +12,19 @@ final class Game {
 }
 
 final class BowlingGameTests: XCTestCase {
+    private var game: Game!
+    
+    override func setUp() {
+        super.setUp()
+        game = Game()
+    }
+    
+    override func tearDown() {
+        game = nil
+        super.tearDown()
+    }
+    
     func testGutterGame() {
-        let game = Game()
         for _ in 1...20 {
             game.roll(0)
         }
@@ -21,7 +32,6 @@ final class BowlingGameTests: XCTestCase {
     }
     
     func testAllOnes() {
-        let game = Game()
         for _ in 1...20 {
             game.roll(1)
         }
