@@ -79,7 +79,7 @@ final class BowlingGameTests: XCTestCase {
     }
     
     func testOneStrike() {
-        game.roll(10)
+        rollStrike()
         game.roll(3)
         game.roll(4)
         
@@ -88,6 +88,10 @@ final class BowlingGameTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    private func rollStrike() {
+        game.roll(10)
+    }
+    
     private func rollMany(pins: Int, times: Int) {
         for _ in 1...times {
             game.roll(pins)
