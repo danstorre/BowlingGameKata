@@ -13,7 +13,7 @@ final class Game {
         var score = 0
         var roll = 0
         for _ in 1...10 {
-            if rolls[roll] == 10 {
+            if isStrike(roll) {
                 score += 10 + strikeBonus(roll)
                 roll += 1
             } else if isSpare(roll) {
@@ -29,6 +29,10 @@ final class Game {
     
     private func isSpare(_ roll: Int) -> Bool {
         rolls[roll] + rolls[roll + 1] == 10
+    }
+    
+    private func isStrike(_ roll: Int) -> Bool {
+        return rolls[roll] == 10
     }
     
     private func strikeBonus(_ roll: Int) -> Int {
