@@ -13,8 +13,7 @@ final class Game {
         var score = 0
         var roll = 0
         for _ in 1...10 {
-            // spare
-            if rolls[roll] + rolls[roll + 1] == 10 {
+            if isSpare(roll) {
                 score += 10 + rolls[roll + 2]
                 roll += 2
             } else {
@@ -23,6 +22,10 @@ final class Game {
             }
         }
         return score
+    }
+    
+    private func isSpare(_ roll: Int) -> Bool {
+        rolls[roll] + rolls[roll + 1] == 10
     }
 }
 
