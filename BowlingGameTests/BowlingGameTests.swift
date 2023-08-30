@@ -1,7 +1,16 @@
 import XCTest
 
 class BowlingGame {
-    private func calculateScore() -> Int {
+    private static let maxRolls = 21
+    private var rolls = [Int](repeating: 0, count: maxRolls)
+    private var currentRollIndex = 0
+    
+    func roll(pinsKnocked: Int) {
+        rolls[currentRollIndex] = pinsKnocked
+        currentRollIndex += 1
+    }
+    
+    var score: Int {
         var score = 0
         var indexRoll = 0
         while indexRoll < 20 {
@@ -15,19 +24,6 @@ class BowlingGame {
         }
         
         return score
-    }
-    
-    var score: Int {
-        return calculateScore()
-    }
-    
-    private static let maxRolls = 21
-    private var rolls = [Int](repeating: 0, count: maxRolls)
-    private var currentRollIndex = 0
-    
-    func roll(pinsKnocked: Int) {
-        rolls[currentRollIndex] = pinsKnocked
-        currentRollIndex += 1
     }
 }
 
