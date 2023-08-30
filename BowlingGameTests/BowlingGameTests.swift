@@ -1,10 +1,18 @@
 import XCTest
 
 class BowlingGame {
-    private(set) var score: Int = 0
+    var score: Int {
+        return rolls.reduce(0) { partialScore, nextNockedPins in
+            partialScore + nextNockedPins
+        }
+    }
+    
+    private var rolls = [Int](repeating: 0, count: 20)
+    private var curentRollIndex = 0
     
     func roll(pinsKnocked: Int) {
-        score += pinsKnocked
+        rolls[curentRollIndex] = pinsKnocked
+        curentRollIndex += 1
     }
 }
 
