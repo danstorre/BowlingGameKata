@@ -1,13 +1,28 @@
 import XCTest
 
 class BowlingGame {
-    var score: Int {
-        return rolls.reduce(0) { partialScore, nextNockedPins in
-            partialScore + nextNockedPins
+    private func calculateScore() -> Int {
+        var score = 0
+        var indexRoll = 0
+        while indexRoll < 20 {
+            if (rolls[indexRoll] + rolls[indexRoll+1]) == 10 { // spare
+                score += 10 + rolls[indexRoll + 2] // sum 10 + next roll bonus
+                indexRoll += 2
+            } else {
+                score += rolls[indexRoll]
+                indexRoll += 1
+            }
         }
+        
+        return score
     }
     
-    private var rolls = [Int](repeating: 0, count: 20)
+    var score: Int {
+        return calculateScore()
+    }
+    
+    private static let maxRolls = 21
+    private var rolls = [Int](repeating: 0, count: maxRolls)
     private var currentRollIndex = 0
     
     func roll(pinsKnocked: Int) {
@@ -38,6 +53,23 @@ final class BowlingGameTests: XCTestCase {
         roll(sut, times: maxRolls, pins: 1)
         
         XCTAssertEqual(sut.score, 20)
+    }
+    
+    func test_roll_onSpare_shouldDeliverScoreWithSpareBonuses() {
+        let samples = [
+            (rolls: [1,9,0], expectedscore: 10),
+            (rolls: [1,9,1], expectedscore: 12)
+        ]
+        samples.enumerated().forEach { (index, sample) in
+            let sut = BowlingGame()
+            
+            sample.rolls.forEach { pins in
+                sut.roll(pinsKnocked: pins)
+            }
+            roll(sut, times: 17, pins: 0)
+            
+            XCTAssertEqual(sut.score, sample.expectedscore, "for sample at index \(String(describing: index))")
+        }
     }
     
     // MARK: - Helpers
