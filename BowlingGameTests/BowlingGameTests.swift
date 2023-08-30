@@ -1,10 +1,10 @@
 import XCTest
 
 class BowlingGame {
-    let score: Int = 0
+    private(set) var score: Int = 0
     
     func roll(pinsKnocked: Int) {
-        
+        score += pinsKnocked
     }
 }
 
@@ -22,5 +22,16 @@ final class BowlingGameTests: XCTestCase {
         }
         
         XCTAssertEqual(sut.score, 0)
+    }
+    
+    func test_roll_onOnePinPerFrame_shouldDeliverScoreOfTen() {
+        let sut = BowlingGame()
+        
+        Array<Int>.init(repeating: 0, count: 10).forEach { roll in
+            sut.roll(pinsKnocked: 1)
+            sut.roll(pinsKnocked: 0)
+        }
+        
+        XCTAssertEqual(sut.score, 10)
     }
 }
