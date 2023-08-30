@@ -24,22 +24,26 @@ final class BowlingGameTests: XCTestCase {
     
     func test_roll_onGutterGame_shouldDeliverScoreOfZero() {
         let sut = BowlingGame()
+        let maxRolls = 20
         
-        Array<Int>.init(repeating: 0, count: 20).forEach { roll in
-            sut.roll(pinsKnocked: 0)
-        }
+        roll(sut, times: maxRolls, pins: 0)
         
         XCTAssertEqual(sut.score, 0)
     }
     
-    func test_roll_onOnePinPerFrame_shouldDeliverScoreOfTen() {
+    func test_roll_onOnePinPerRoll_shouldDeliverScoreOfTwenty() {
         let sut = BowlingGame()
+        let maxRolls = 20
         
-        Array<Int>.init(repeating: 0, count: 10).forEach { roll in
-            sut.roll(pinsKnocked: 1)
-            sut.roll(pinsKnocked: 0)
+        roll(sut, times: maxRolls, pins: 1)
+        
+        XCTAssertEqual(sut.score, 20)
+    }
+    
+    // MARK: - Helpers
+    private func roll(_ sut: BowlingGame, times: Int, pins: Int) {
+        Array<Int>.init(repeating: 0, count: times).forEach { roll in
+            sut.roll(pinsKnocked: pins)
         }
-        
-        XCTAssertEqual(sut.score, 10)
     }
 }
