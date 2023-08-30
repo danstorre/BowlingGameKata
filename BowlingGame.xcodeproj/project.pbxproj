@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB8EF0AB2A9FB0EB00945550 /* BowlingGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8EF0AA2A9FB0EB00945550 /* BowlingGameTests.swift */; };
+		FB0E55182A9FBB730019020F /* BowlingGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E55172A9FBB730019020F /* BowlingGameTests.swift */; };
 		FBA5385B2A8FC74F00D812C9 /* BowlingGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA538522A8FC74F00D812C9 /* BowlingGame.framework */; };
 		FBA538612A8FC74F00D812C9 /* BowlingGame.h in Headers */ = {isa = PBXBuildFile; fileRef = FBA538552A8FC74F00D812C9 /* BowlingGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -23,7 +23,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FB8EF0AA2A9FB0EB00945550 /* BowlingGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameTests.swift; sourceTree = "<group>"; };
+		FB0E55172A9FBB730019020F /* BowlingGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingGameTests.swift; sourceTree = "<group>"; };
 		FBA538522A8FC74F00D812C9 /* BowlingGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BowlingGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA538552A8FC74F00D812C9 /* BowlingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BowlingGame.h; sourceTree = "<group>"; };
 		FBA5385A2A8FC74F00D812C9 /* BowlingGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BowlingGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +77,7 @@
 		FBA5385E2A8FC74F00D812C9 /* BowlingGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				FB8EF0AA2A9FB0EB00945550 /* BowlingGameTests.swift */,
+				FB0E55172A9FBB730019020F /* BowlingGameTests.swift */,
 			);
 			path = BowlingGameTests;
 			sourceTree = "<group>";
@@ -147,6 +147,7 @@
 					};
 					FBA538592A8FC74F00D812C9 = {
 						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -198,7 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB8EF0AB2A9FB0EB00945550 /* BowlingGameTests.swift in Sources */,
+				FB0E55182A9FBB730019020F /* BowlingGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +398,7 @@
 		FBA538682A8FC74F00D812C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AEWQUX8MPM;
@@ -405,6 +407,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.danstorre.BowlingGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -412,6 +415,7 @@
 		FBA538692A8FC74F00D812C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AEWQUX8MPM;
