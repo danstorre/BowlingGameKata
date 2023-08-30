@@ -8,11 +8,11 @@ class BowlingGame {
     }
     
     private var rolls = [Int](repeating: 0, count: 20)
-    private var curentRollIndex = 0
+    private var currentRollIndex = 0
     
     func roll(pinsKnocked: Int) {
-        rolls[curentRollIndex] = pinsKnocked
-        curentRollIndex += 1
+        rolls[currentRollIndex] = pinsKnocked
+        currentRollIndex += 1
     }
 }
 
