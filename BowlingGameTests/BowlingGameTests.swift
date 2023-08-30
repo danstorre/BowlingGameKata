@@ -72,7 +72,7 @@ final class BowlingGameTests: XCTestCase {
             }
             roll(sut, times: 17, pins: 0)
             
-            XCTAssertEqual(sut.score, sample.expectedscore, "for sample at index \(String(describing: index))")
+            XCTAssertEqual(sut.score, sample.expectedscore, "for sample at index \(index))")
         }
     }
     
