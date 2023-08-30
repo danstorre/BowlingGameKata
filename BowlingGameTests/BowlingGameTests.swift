@@ -14,7 +14,7 @@ class BowlingGame {
         var score = 0
         var indexRoll = 0
         while indexRoll < 20 {
-            if (rolls[indexRoll] + rolls[indexRoll+1]) == 10 { // spare
+            if isSpare(on: indexRoll) {
                 score += 10 + rolls[indexRoll + 2] // sum 10 + next roll bonus
                 indexRoll += 2
             } else {
@@ -24,6 +24,10 @@ class BowlingGame {
         }
         
         return score
+    }
+    
+    private func isSpare(on indexRoll: Int) -> Bool {
+        return (rolls[indexRoll] + rolls[indexRoll+1]) == 10
     }
 }
 
