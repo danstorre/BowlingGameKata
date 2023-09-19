@@ -14,7 +14,10 @@ class BowlingGame {
         var score = 0
         var indexRoll = 0
         while indexRoll < 20 {
-            if isSpare(on: indexRoll) {
+            if isStrike(on: indexRoll) {
+                score += 10 + bonusStrike(on: indexRoll)
+                indexRoll += 1
+            } else if isSpare(on: indexRoll) {
                 score += 10 + bonusSpare(on: indexRoll)
                 indexRoll += 2
             } else {
@@ -32,6 +35,14 @@ class BowlingGame {
     
     private func isSpare(on indexRoll: Int) -> Bool {
         return (rolls[indexRoll] + rolls[indexRoll+1]) == 10
+    }
+    
+    private func bonusStrike(on indexRoll: Int) -> Int {
+        return rolls[indexRoll + 1] + rolls[indexRoll + 2]
+    }
+    
+    private func isStrike(on indexRoll: Int) -> Bool {
+        return rolls[indexRoll] == 10
     }
 }
 
@@ -72,6 +83,25 @@ final class BowlingGameTests: XCTestCase {
             }
             roll(sut, times: 17, pins: 0)
             
+            XCTAssertEqual(sut.score, sample.expectedscore, "for sample at index \(index))")
+        }
+    }
+    
+    func test_roll_onStrike_shouldDeliverScoreWithStrikeBonuses() {
+        let samples = [
+            (rolls: [10,0,0], expectedscore: 10),
+            (rolls: [10,1,0], expectedscore: 12),
+            (rolls: [10,0,1], expectedscore: 12),
+            (rolls: [10,1,1], expectedscore: 14),
+        ]
+        samples.enumerated().forEach { (index, sample) in
+            let sut = BowlingGame()
+
+            sample.rolls.forEach { pins in
+                sut.roll(pinsKnocked: pins)
+            }
+            roll(sut, times: 17, pins: 0)
+
             XCTAssertEqual(sut.score, sample.expectedscore, "for sample at index \(index))")
         }
     }
