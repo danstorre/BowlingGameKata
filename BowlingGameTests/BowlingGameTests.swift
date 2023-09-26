@@ -13,7 +13,7 @@ class BowlingGame {
     var score: Int {
         var score = 0
         var indexRoll = 0
-        while indexRoll < 20 {
+        for _ in 1...10 {
             if isStrike(on: indexRoll) {
                 score += 10 + bonusStrike(on: indexRoll)
                 indexRoll += 1
@@ -21,8 +21,8 @@ class BowlingGame {
                 score += 10 + bonusSpare(on: indexRoll)
                 indexRoll += 2
             } else {
-                score += rolls[indexRoll]
-                indexRoll += 1
+                score += rolls[indexRoll] + rolls[indexRoll+1]
+                indexRoll += 2
             }
         }
         
@@ -63,10 +63,7 @@ final class BowlingGameTests: XCTestCase {
     
     func test_roll_onOnePinPerRoll_shouldDeliverScoreOfTwenty() {
         let sut = BowlingGame()
-        let maxRolls = 20
-        
-        roll(sut, times: maxRolls, pins: 1)
-        
+        rollMany(sut: sut, pins: 1, times: 20)
         XCTAssertEqual(sut.score, 20)
     }
     
@@ -108,9 +105,21 @@ final class BowlingGameTests: XCTestCase {
         }
     }
     
+    func test_PerfectGame() {
+        let sut = BowlingGame()
+        roll(sut, times: 12, pins: 10)
+        XCTAssertEqual(sut.score, 300, "should deliver perfect score. got score: \(sut.score)")
+    }
+    
     // MARK: - Helpers
     private func roll(_ sut: BowlingGame, times: Int, pins: Int) {
         Array<Int>.init(repeating: 0, count: times).forEach { roll in
+            sut.roll(pinsKnocked: pins)
+        }
+    }
+        
+    private func rollMany(sut: BowlingGame, pins: Int, times: Int) {
+        for _ in 1...times {
             sut.roll(pinsKnocked: pins)
         }
     }
