@@ -93,7 +93,9 @@ final class BowlingGameTests: XCTestCase {
             (rolls: [10,1,0], expectedscore: 12),
             (rolls: [10,0,1], expectedscore: 12),
             (rolls: [10,1,1], expectedscore: 14),
+            (rolls: [10,10,10], expectedscore: 60)
         ]
+        
         samples.enumerated().forEach { (index, sample) in
             let sut = BowlingGame()
 
