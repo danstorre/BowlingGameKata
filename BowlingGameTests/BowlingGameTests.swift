@@ -62,12 +62,7 @@ final class BowlingGameTests: XCTestCase {
     // MARK: Helpers
     
     private func rollUntilEndOfGame(sut: BowlingGame, pins: Int) {
-        let frames = (0..<10)
-        
-        frames.forEach { _ in
-            sut.roll(pins: pins)
-            sut.roll(pins: pins)
-        }
+        roll(sut: sut, manyFrames: 10, withPins: pins)
     }
 
     private func roll(sut: BowlingGame, manyFrames frames: Int, withPins pins: Int) {
