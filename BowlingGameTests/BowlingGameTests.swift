@@ -2,9 +2,6 @@ import XCTest
 
 class BowlingGame {
     private var rolls: [Int] = .init(repeating: 0, count: 21)
-    var score: Int {
-        calculateScore()
-    }
     private var currentRollIndex = 0
     
     func roll(pins: Int) {
@@ -12,7 +9,7 @@ class BowlingGame {
         currentRollIndex += 1
     }
     
-    func calculateScore() -> Int {
+    func score() -> Int {
         var score = 0
         let frames = (1...10)
         for index in frames {
@@ -32,7 +29,7 @@ final class BowlingGameTests: XCTestCase {
             sut.roll(pins: 0)
         }
         
-        XCTAssertEqual(sut.score, 0)
+        XCTAssertEqual(sut.score(), 0)
     }
     
     func test_GameOfOnes_returnsScoreOfTwenty() {
@@ -44,6 +41,6 @@ final class BowlingGameTests: XCTestCase {
             sut.roll(pins: 1)
         }
         
-        XCTAssertEqual(sut.score, 20)
+        XCTAssertEqual(sut.score(), 20)
     }
 }
