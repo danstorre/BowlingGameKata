@@ -30,17 +30,17 @@ final class BowlingGameTests: XCTestCase {
     
     func test_GutterGame_returnsScoreOfZero() {
         let sut = BowlingGame()
-             
+        
         rollUntilEndOfGame(sut: sut, pins: 0)
-                
+        
         XCTAssertEqual(sut.score(), 0)
     }
-
+    
     func test_GameOfOnes_returnsScoreOfTwenty() {
         let sut = BowlingGame()
         
         rollUntilEndOfGame(sut: sut, pins: 1)
-
+        
         XCTAssertEqual(sut.score(), 20)
     }
     
@@ -50,16 +50,11 @@ final class BowlingGameTests: XCTestCase {
         // Roll a spare
         sut.roll(pins: 4)
         sut.roll(pins: 6)
-
+        
         sut.roll(pins: 5)
         sut.roll(pins: 0)
         
-        let frames = (1...8)
-        
-        frames.forEach { _ in
-            sut.roll(pins: 0)
-            sut.roll(pins: 0)
-        }
+        roll(sut: sut, manyFrames: 8, withPins: 0)
         
         XCTAssertEqual(sut.score(), 20)
     }
@@ -68,8 +63,15 @@ final class BowlingGameTests: XCTestCase {
     
     private func rollUntilEndOfGame(sut: BowlingGame, pins: Int) {
         let frames = (0..<10)
-                
+        
         frames.forEach { _ in
+            sut.roll(pins: pins)
+            sut.roll(pins: pins)
+        }
+    }
+
+    private func roll(sut: BowlingGame, manyFrames frames: Int, withPins pins: Int) {
+        (1...frames).forEach { _ in
             sut.roll(pins: pins)
             sut.roll(pins: pins)
         }
