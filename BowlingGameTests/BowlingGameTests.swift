@@ -1,10 +1,24 @@
 import XCTest
 
 class BowlingGame {
-    private(set) var score = 0
+    private var rolls: [Int] = .init(repeating: 0, count: 21)
+    var score: Int {
+        calculateScore()
+    }
+    private var currentRollIndex = 0
     
     func roll(pins: Int) {
-        score += pins
+        rolls[currentRollIndex] = pins
+        currentRollIndex += 1
+    }
+    
+    func calculateScore() -> Int {
+        var score = 0
+        let frames = (1...10)
+        for index in frames {
+            score += rolls[index] + rolls[index + 1]
+        }
+        return score
     }
 }
 
