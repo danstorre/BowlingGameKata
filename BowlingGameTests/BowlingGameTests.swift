@@ -12,8 +12,15 @@ class BowlingGame {
     func score() -> Int {
         var score = 0
         let frames = (1...10)
-        for index in frames {
-            score += rolls[index] + rolls[index + 1]
+        var rollIndex = 0
+        for _ in frames {
+            score += rolls[rollIndex] + rolls[rollIndex + 1]
+            
+            if rolls[rollIndex] + rolls[rollIndex + 1] == 10 {
+                score += rolls[rollIndex + 2]
+            }
+            
+            rollIndex += 2
         }
         return score
     }
@@ -39,6 +46,26 @@ final class BowlingGameTests: XCTestCase {
         frames.forEach { _ in
             sut.roll(pins: 1)
             sut.roll(pins: 1)
+        }
+        
+        XCTAssertEqual(sut.score(), 20)
+    }
+    
+    func test_OneSpare_returnsScoreWithSpareBonus() {
+        let sut = BowlingGame()
+        
+        // Roll a spare
+        sut.roll(pins: 4)
+        sut.roll(pins: 6)
+
+        sut.roll(pins: 5)
+        sut.roll(pins: 0)
+        
+        let frames = (1...8)
+        
+        frames.forEach { _ in
+            sut.roll(pins: 0)
+            sut.roll(pins: 0)
         }
         
         XCTAssertEqual(sut.score(), 20)
