@@ -47,9 +47,7 @@ final class BowlingGameTests: XCTestCase {
     func test_OneSpare_returnsScoreWithSpareBonus() {
         let sut = BowlingGame()
         
-        // Roll a spare
-        sut.roll(pins: 4)
-        sut.roll(pins: 6)
+        rollSpare(sut: sut)
         
         sut.roll(pins: 5)
         sut.roll(pins: 0)
@@ -70,5 +68,10 @@ final class BowlingGameTests: XCTestCase {
             sut.roll(pins: pins)
             sut.roll(pins: pins)
         }
+    }
+    
+    private func rollSpare(sut: BowlingGame) {
+        sut.roll(pins: 4)
+        sut.roll(pins: 6)
     }
 }
