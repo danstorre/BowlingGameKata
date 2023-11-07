@@ -10,19 +10,19 @@ class BowlingGame {
     }
     
     func score() -> Int {
-        var score = 0
+        var accumulatedScore = 0
         let frames = (1...10)
         var rollIndex = 0
         for _ in frames {
-            score += rolls[rollIndex] + rolls[rollIndex + 1]
+            accumulatedScore += rolls[rollIndex] + rolls[rollIndex + 1]
             
             if rolls[rollIndex] + rolls[rollIndex + 1] == 10 {
-                score += rolls[rollIndex + 2]
+                accumulatedScore += rolls[rollIndex + 2]
             }
             
             rollIndex += 2
         }
-        return score
+        return accumulatedScore
     }
 }
 
