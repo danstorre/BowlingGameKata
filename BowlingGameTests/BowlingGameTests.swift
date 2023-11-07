@@ -17,7 +17,7 @@ class BowlingGame {
             accumulatedScore += rolls[rollIndex] + rolls[rollIndex + 1]
             
             if isSpare(rollIndex) {
-                accumulatedScore += rolls[rollIndex + 2]
+                accumulatedScore += spareBonus(for: rollIndex)
             }
             
             rollIndex += 2
@@ -27,6 +27,10 @@ class BowlingGame {
     
     private func isSpare(_ rollIndex: Int) -> Bool {
         rolls[rollIndex] + rolls[rollIndex + 1] == 10
+    }
+    
+    private func spareBonus(for rollIndex: Int) -> Int {
+        rolls[rollIndex + 2]
     }
 }
 
