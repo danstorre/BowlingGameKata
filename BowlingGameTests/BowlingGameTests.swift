@@ -16,13 +16,17 @@ class BowlingGame {
         for _ in frames {
             accumulatedScore += rolls[rollIndex] + rolls[rollIndex + 1]
             
-            if rolls[rollIndex] + rolls[rollIndex + 1] == 10 {
+            if isSpare(rollIndex) {
                 accumulatedScore += rolls[rollIndex + 2]
             }
             
             rollIndex += 2
         }
         return accumulatedScore
+    }
+    
+    private func isSpare(_ rollIndex: Int) -> Bool {
+        rolls[rollIndex] + rolls[rollIndex + 1] == 10
     }
 }
 
