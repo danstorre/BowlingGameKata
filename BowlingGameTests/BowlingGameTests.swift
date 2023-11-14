@@ -14,15 +14,24 @@ class BowlingGame {
         let frames = (1...10)
         var rollIndex = 0
         for _ in frames {
-            accumulatedScore += frameResult(rollIndex: rollIndex)
-            
-            if isSpare(rollIndex) {
-                accumulatedScore += spareBonus(for: rollIndex)
+            if isStrike(rollIndex) {
+                accumulatedScore += 10 + rolls[rollIndex + 1] + rolls[rollIndex + 2]
+                rollIndex += 1
+            } else {
+                accumulatedScore += frameResult(rollIndex: rollIndex)
+                
+                if isSpare(rollIndex) {
+                    accumulatedScore += spareBonus(for: rollIndex)
+                }
+                
+                rollIndex += 2
             }
-            
-            rollIndex += 2
         }
         return accumulatedScore
+    }
+    
+    private func isStrike(_ rollIndex: Int) -> Bool {
+        rolls[rollIndex] == 10
     }
     
     private func frameResult(rollIndex: Int) -> Int {
@@ -66,7 +75,21 @@ final class BowlingGameTests: XCTestCase {
         XCTAssertEqual(sut.score(), 20)
     }
     
+    func test_OneStrike_returnsScoreWithStrikeBonus() {
+        let sut = BowlingGame()
+        
+        rollStrike(sut: sut)
+        sut.roll(pins: 5)
+        sut.roll(pins: 4)
+        roll(sut: sut, manyRolls: 16, withPins: 0)
+        
+        XCTAssertEqual(sut.score(), 28)
+    }
+    
     // MARK: Helpers
+    private func rollStrike(sut: BowlingGame) {
+        sut.roll(pins: 10)
+    }
     
     private func rollUntilEndOfGame(sut: BowlingGame, pins: Int) {
         roll(sut: sut, manyRolls: 20, withPins: pins)
