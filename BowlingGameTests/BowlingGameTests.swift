@@ -14,7 +14,7 @@ class BowlingGame {
         let frames = (1...10)
         var rollIndex = 0
         for _ in frames {
-            accumulatedScore += rolls[rollIndex] + rolls[rollIndex + 1]
+            accumulatedScore += frameResult(rollIndex: rollIndex)
             
             if isSpare(rollIndex) {
                 accumulatedScore += spareBonus(for: rollIndex)
@@ -23,6 +23,10 @@ class BowlingGame {
             rollIndex += 2
         }
         return accumulatedScore
+    }
+    
+    private func frameResult(rollIndex: Int) -> Int {
+        rolls[rollIndex] + rolls[rollIndex + 1]
     }
     
     private func isSpare(_ rollIndex: Int) -> Bool {
