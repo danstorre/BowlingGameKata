@@ -16,15 +16,13 @@ class BowlingGame {
         for _ in frames {
             if isStrike(rollIndex) {
                 accumulatedScore += partialStrikeResult(rollIndex) + strikeBonus(rollIndex)
-                
                 rollIndex += 1
+            } else if isSpare(rollIndex) {
+                accumulatedScore += partialFrameResult(rollIndex: rollIndex)
+                accumulatedScore += spareBonus(for: rollIndex)
+                rollIndex += 2
             } else {
                 accumulatedScore += partialFrameResult(rollIndex: rollIndex)
-                
-                if isSpare(rollIndex) {
-                    accumulatedScore += spareBonus(for: rollIndex)
-                }
-                
                 rollIndex += 2
             }
         }
