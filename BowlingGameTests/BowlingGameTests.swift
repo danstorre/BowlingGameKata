@@ -19,7 +19,7 @@ class BowlingGame {
                 
                 rollIndex += 1
             } else {
-                accumulatedScore += resultOfNextTwoRolls(rollIndex: rollIndex)
+                accumulatedScore += partialFrameResult(rollIndex: rollIndex)
                 
                 if isSpare(rollIndex) {
                     accumulatedScore += spareBonus(for: rollIndex)
@@ -43,7 +43,7 @@ class BowlingGame {
         rolls[rollIndex] == 10
     }
     
-    private func resultOfNextTwoRolls(rollIndex: Int) -> Int {
+    private func partialFrameResult(rollIndex: Int) -> Int {
         rolls[rollIndex] + rolls[rollIndex + 1]
     }
     
