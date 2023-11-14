@@ -15,7 +15,8 @@ class BowlingGame {
         var rollIndex = 0
         for _ in frames {
             if isStrike(rollIndex) {
-                accumulatedScore += 10 + strikeBonus(rollIndex)
+                accumulatedScore += partialStrikeResult(rollIndex) + strikeBonus(rollIndex)
+                
                 rollIndex += 1
             } else {
                 accumulatedScore += resultOfNextTwoRolls(rollIndex: rollIndex)
@@ -28,6 +29,10 @@ class BowlingGame {
             }
         }
         return accumulatedScore
+    }
+    
+    private func partialStrikeResult(_ rollIndex: Int) -> Int {
+        rolls[rollIndex]
     }
     
     private func strikeBonus(_ rollIndex: Int) -> Int {
