@@ -93,6 +93,14 @@ final class BowlingGameTests: XCTestCase {
         XCTAssertEqual(sut.score(), 28)
     }
     
+    func test_PerfectGame_returnsMaximumScore() {
+        let sut = BowlingGame()
+        
+        roll(sut: sut, manyRolls: 12, withPins: 10)
+        
+        XCTAssertEqual(sut.score(), 300)
+    }
+    
     // MARK: Helpers
     private func rollStrike(sut: BowlingGame) {
         sut.roll(pins: 10)
