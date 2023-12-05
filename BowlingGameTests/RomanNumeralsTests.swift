@@ -8,8 +8,13 @@ enum RomanNumeralConverter {
 final class RomanNumeralsTests: XCTestCase {
     
     func test_toRomanNumbers_convertsIntegerValuesToCorrectRomanNumbers() {
-        let result = RomanNumeralConverter.toRomanNumbers(1)
-
-        XCTAssertEqual(result, "I")
+        let samples: [(input: Int, expected: String)] = [
+            (1, "I")
+        ]
+        
+        for sample in samples {
+            let result = RomanNumeralConverter.toRomanNumbers(sample.input)
+            XCTAssertTrue(result == sample.expected, "Expected \(sample.expected) for input \(sample.input), got \(result) instead")
+        }
     }
 }
