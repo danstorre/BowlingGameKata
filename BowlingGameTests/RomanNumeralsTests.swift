@@ -3,7 +3,9 @@ import XCTest
 
 enum RomanNumeralConverter {
     static func toRomanNumbers(_ int: Int) -> String {
-        int == 1 ? "I" : "II"
+        if int == 1 { return "I" }
+        if int == 2 { return "II" }
+        return "III"
     }
 }
 
@@ -12,7 +14,8 @@ final class RomanNumeralsTests: XCTestCase {
     func test_toRomanNumbers_convertsIntegerValuesToCorrectRomanNumbers() {
         let samples: [(input: Int, expected: String)] = [
             (1, "I"),
-            (2, "II")
+            (2, "II"),
+            (3, "III")
         ]
         
         for sample in samples {
