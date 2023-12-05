@@ -5,7 +5,8 @@ enum RomanNumeralConverter {
     static func toRomanNumbers(_ int: Int) -> String {
         if int == 1 { return "I" }
         if int == 2 { return "II" }
-        return "III"
+        if int == 3 { return "III" }
+        return "IV"
     }
 }
 
@@ -15,7 +16,8 @@ final class RomanNumeralsTests: XCTestCase {
         let samples: [(input: Int, expected: String)] = [
             (1, "I"),
             (2, "II"),
-            (3, "III")
+            (3, "III"),
+            (4, "IV")
         ]
         
         for sample in samples {
