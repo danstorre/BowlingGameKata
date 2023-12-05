@@ -7,7 +7,7 @@ enum RomanNumeralConverter {
 
 final class RomanNumeralsTests: XCTestCase {
     
-    func test_delivers_I_for_1() {
+    func test_toRomanNumbers_convertsIntegerValuesToCorrectRomanNumbers() {
         let result = RomanNumeralConverter.toRomanNumbers(1)
 
         XCTAssertEqual(result, "I")
